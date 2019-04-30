@@ -22,14 +22,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

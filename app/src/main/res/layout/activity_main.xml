@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/holiday_types"
         android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <ListView
         android:id="@+id/lvTypes"
