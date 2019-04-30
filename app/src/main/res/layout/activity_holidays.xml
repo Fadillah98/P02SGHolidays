@@ -6,17 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".HolidaysActivity">
-
     <TextView
-        android:id="@+id/tvHolidays"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <ListView
-        android:id="@+id/lvHolidays"
+        android:id="@+id/listViewHolidays"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 </LinearLayout>

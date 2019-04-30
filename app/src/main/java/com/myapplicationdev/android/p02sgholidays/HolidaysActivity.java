@@ -15,50 +15,45 @@ import java.util.List;
 
 public class HolidaysActivity extends AppCompatActivity {
 
-    TextView tvHoliday;
-    ListView lvHoliday;
-    ArrayAdapter aaHoliday;
-    ArrayList<Holiday> holiday;
+    TextView tvHolidayType;
+    ListView lv;
+    ArrayAdapter aa;
+    ArrayList<Holiday> holidays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_holidays);
 
-
-        lvHoliday = this.findViewById(R.id.lvHolidays);
-        tvHoliday = this.findViewById(R.id.tvHolidays);
+        tvHolidayType = findViewById(R.id.textView2);
+        lv = findViewById(R.id.listViewHolidays);
+        holidays = new ArrayList<Holiday>();
 
         Intent intentReceived = getIntent();
-        String name = intentReceived.getStringExtra("type");
-        int pos = intentReceived.getIntExtra("pos", 0);
-        tvHoliday.setText(name);
+        int position = intentReceived.getIntExtra("itemPosition", 0);
 
-        holiday = new ArrayList<Holiday>();
-
-        if (pos == 0){
-            holiday.add(new Holiday("New Year's Day", "1 January 2019", "newyear"));
-            holiday.add(new Holiday("Labour Day", "1 May 2019", "labour"));
-
-        } else {
-            holiday.add(new Holiday("Chinese New Year", "5-6 February 2019", "cny"));
-            holiday.add(new Holiday("Vesak Day", "19 May 2019", "vesak"));
-            holiday.add(new Holiday("Hari Raya Puasa", "5 June 2019", "harirayapuasa"));
+        if (position == 0) {
+            tvHolidayType.setText("Secular");
+            holidays.add(new Holiday("New Year's Day", "1 Jan 2017", "year"));
+            holidays.add(new Holiday("Labour Day", "1 May 2017", "labour_day"));
+        } else if (position == 1) {
+            tvHolidayType.setText("Ethnic & Religion");
+            holidays.add(new Holiday("Chinese New Year", "28-29 Jan 2017", "cny"));
+            holidays.add(new Holiday("Good Friday", "14 April 2017", "good_friday"));
         }
 
-        aaHoliday = new HolidayAdapter(this, R.layout.row, holiday);
-        lvHoliday.setAdapter(aaHoliday);
-        aaHoliday.notifyDataSetChanged();
+        aa = new HolidayAdapter(this, R.layout.row, holidays);
+        lv.setAdapter(aa);
 
-        lvHoliday.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Holiday selectedPos = holiday.get(position);
-
-                Toast.makeText(HolidaysActivity.this, selectedPos.getName() + " Date: " + selectedPos.getDate(), Toast.LENGTH_LONG).show();
+                Holiday selectedHol = holidays.get(position);
+                Toast.makeText(HolidaysActivity.this, selectedHol.getName()
+                                + " Date: " + selectedHol.getDate(),
+                        Toast.LENGTH_LONG).show();
             }
         });
-
     }
 }
