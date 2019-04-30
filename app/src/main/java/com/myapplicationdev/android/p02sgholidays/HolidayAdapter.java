@@ -11,48 +11,56 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class HolidayAdapter extends ArrayAdapter<Holiday> {
-
-    private ArrayList<Holiday> holiday;
     private Context context;
-    private TextView tvName, tvDate;
+    private ArrayList<Holiday> holiday;
+    private TextView tvHoliday;
     private ImageView ivHoliday;
+    private TextView tvDate;
 
-    public HolidayAdapter(Context context, int resource, ArrayList<Holiday> objects){
+    public HolidayAdapter(Context context, int resource, ArrayList<Holiday> objects) {
         super(context, resource, objects);
+        // Store the food that is passed to this adapter
         holiday = objects;
+        // Store Context object as we would need to use it later
         this.context = context;
     }
 
+    // getView() is the method ListView will call to get the
+    //  View object every time ListView needs a row
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // The usual way to get the LayoutInflater object to
+        //  "inflate" the XML file into a View object
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // "Inflate" the row.xml as the layout for the View object
         View rowView = inflater.inflate(R.layout.row, parent, false);
 
-        tvName = rowView.findViewById(R.id.tvName);
+        // Get the TextView object
+        tvHoliday =  rowView.findViewById(R.id.tvHoliday);
+        // Get the ImageView object
+        ivHoliday =   rowView.findViewById(R.id.ivHoliday);
         tvDate = rowView.findViewById(R.id.tvDate);
-        ivHoliday = rowView.findViewById(R.id.imageView);
 
-        Holiday currPos = holiday.get(position);
-        tvName.setText(currPos.getName());
-        tvDate.setText(currPos.getDate());
+        // The parameter "position" is the index of the
+        //  row ListView is requesting.
 
-        if(currPos.getImage() == "labour") {
-            ivHoliday.setImageResource(R.drawable.labour);
+        Holiday currentHoliday = holiday.get(position);
 
-        } else if (currPos.getImage() == "vesak") {
-            ivHoliday.setImageResource(R.drawable.vesak);
 
-        } else if (currPos.getImage() == "cny") {
-            ivHoliday.setImageResource(R.drawable.cny);
+        tvHoliday.setText(currentHoliday.getName());
+        tvDate.setText(currentHoliday.getDate());
 
-        } else if (currPos.getImage() == "newyear"){
+        Integer a = currentHoliday.getID();
+        if(a==1) {
             ivHoliday.setImageResource(R.drawable.newyear);
-
-        } else {
-            ivHoliday.setImageResource(R.drawable.harirayapuasa);
         }
-
+        else {
+            ivHoliday.setImageResource(R.drawable.labour);
+        }
+        // Return the nicely done up View to the ListView
         return rowView;
     }
-
 }
+
+
