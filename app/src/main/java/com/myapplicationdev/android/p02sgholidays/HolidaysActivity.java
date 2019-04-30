@@ -30,16 +30,18 @@ public class HolidaysActivity extends AppCompatActivity {
         holidays = new ArrayList<Holiday>();
 
         Intent intentReceived = getIntent();
-        int position = intentReceived.getIntExtra("itemPosition", 0);
+        String type = intentReceived.getStringExtra("type");
+
+        int position = intentReceived.getIntExtra("pos", 0);
+
+        tvHolidayType.setText(type);
 
         if (position == 0) {
-            tvHolidayType.setText("Secular");
-            holidays.add(new Holiday("New Year's Day", "1 Jan 2017", "year"));
+            holidays.add(new Holiday("New Year Day", "1 Jan 2017", "newyear"));
             holidays.add(new Holiday("Labour Day", "1 May 2017", "labour_day"));
         } else if (position == 1) {
-            tvHolidayType.setText("Ethnic & Religion");
             holidays.add(new Holiday("Chinese New Year", "28-29 Jan 2017", "cny"));
-            holidays.add(new Holiday("Good Friday", "14 April 2017", "good_friday"));
+            holidays.add(new Holiday("Vesak Day", "10 May 2017", "vesak"));
         }
 
         aa = new HolidayAdapter(this, R.layout.row, holidays);
@@ -50,8 +52,8 @@ public class HolidaysActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Holiday selectedHol = holidays.get(position);
-                Toast.makeText(HolidaysActivity.this, selectedHol.getName()
-                                + " Date: " + selectedHol.getDate(),
+                Toast.makeText(HolidaysActivity.this, selectedHol.getHolidayName()
+                                + " Date: " + selectedHol.getHolidayDate(),
                         Toast.LENGTH_LONG).show();
             }
         });

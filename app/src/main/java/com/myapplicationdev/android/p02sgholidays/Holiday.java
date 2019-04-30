@@ -1,32 +1,25 @@
 package com.myapplicationdev.android.p02sgholidays;
 
 public class Holiday {
-    private String name;
-    private boolean type;
-    private String date;
-    private Integer id;
+    private String holidayName;
+    private String holidayDate;
+    private String shortFormForPic;
 
-    public Holiday(Integer id,String name, boolean type , String date) {
-        this.name = name;
-        this.type = type;
-        this.date = date;
-        this.id = id;
+    public Holiday(String holidayName, String holidayDate, String shortFormForPic) {
+        this.holidayName = holidayName;
+        this.holidayDate = holidayDate;
+        this.shortFormForPic = shortFormForPic;
     }
 
-    public String getName() {
-        return name;
+    public String getHolidayName() {
+        return holidayName;
     }
-    public boolean isType() {
-        return type;
+    public String getHolidayDate() {
+        return holidayDate;
     }
-    public String getDate() {
-        return date;
+    public String getShortFormForPic() {
+        return shortFormForPic;
     }
-    public Integer getID(){
-        return id;
-    }
-
-    // getView() is the method ListView will call to get the
 }
 
 
